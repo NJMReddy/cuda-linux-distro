@@ -1,0 +1,50 @@
+name: CUDA Buildroot verification
+on:
+  push:
+    branches: [ci/build-verification]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source and run regressions
+        run: |
+          mkdir -p ci-results
+          python3 scripts/verify-project.py --json ci-results/static.json |& tee ci-results/static.log
+          python3 scripts/test-regressions.py |& tee ci-results/regressions.log
+      - name: Prepare Linux build host
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential git wget cpio file bc rsync unzip python3 bison flex patch perl xz-utils bzip2 libelf-dev libssl-dev libncurses-dev qemu-system-x86 ovmf
+          df -h . | tee ci-results/disk-before.log
+          bash scripts/build.sh --check-host
+      - name: Build distribution and validate generated image
+        env:
+          ACCEPT_NVIDIA_LICENSES: ${{ vars.ACCEPT_NVIDIA_LICENSES }}
+        run: |
+          bash scripts/build.sh |& tee ci-results/build.log
+          python3 scripts/validate-image.py buildroot-src/output/images/cuda-distro.img |& tee ci-results/image.log
+      - name: Boot image with OVMF and QEMU
+        run: |
+          touch ci-results/start-boot
+          BOOT_TIMEOUT=300 python3 scripts/qemu-smoke.py |& tee ci-results/qemu.log
+      - name: Collect evidence
+        if: always()
+        run: |
+          mkdir -p ci-results
+          df -h . > ci-results/disk-after.log
+          if test -f ci-results/start-boot; then find boot-logs -type f -newer ci-results/start-boot -exec cp {} ci-results/ \;; fi
+          for f in verification/{linux.resolved.config,buildroot.resolved.config,package-manifest.json}; do if test -f "$f"; then cp "$f" ci-results/; fi; done
+          echo 'GPU CUDA and cuDNN execution require a supported NVIDIA device. NOT TESTED on this runner.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ci-results/
