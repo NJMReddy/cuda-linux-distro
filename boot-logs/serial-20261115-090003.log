@@ -1,0 +1,107 @@
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:04.0 CA00 PCI2.10 PnP PMM+BEFCAD90+BEF0AD90 CA00
+Press Ctrl-B to configure iPXE (PCI 00:04.0)...                                                                               
+
+
+Booting from ROM...
+c[?7l[2JOpenRC init version 0.52.1 starting
+Starting sysinit runlevel
+
+   [1m[32mOpenRC [1m[36m0.52.1[m is starting up [1m[34mBuildroot 2024.02 (x86_64)[m
+
+ [1m[32m*[m Mounting /proc[K ...
+ [ ok ]
+ [1m[32m*[m Mounting /run[K ...
+ [ ok ]
+ [1m[32m*[m /run/openrc: creating directory[K
+ [1m[32m*[m /run/lock: creating directory[K
+ [1m[32m*[m /run/lock: correcting owner[K
+ [1m[32m*[m /run/lock/subsys: creating directory[K
+ [1m[32m*[m /run/lock/subsys: correcting owner[K
+ [1m[32m*[m Caching service dependencies[K ...
+ [ ok ]
+ [1m[32m*[m Mounting /sys[K ...
+ [ ok ]
+ [1m[32m*[m Mounting security filesystem[K ...
+ [ ok ]
+ [1m[32m*[m Mounting debug filesystem[K ...
+ [ ok ]
+ [1m[32m*[m Mounting persistent storage (pstore) filesystem[K ...
+ [ ok ]
+ [1m[32m*[m Remounting devtmpfs on /dev[K ...
+ [ ok ]
+ [1m[32m*[m Mounting /dev/mqueue[K ...
+ [ ok ]
+ [1m[32m*[m Mounting /dev/pts[K ...
+ [ ok ]
+ [1m[32m*[m Mounting /dev/shm[K ...
+ [ ok ]
+Starting boot runlevel
+ [1m[32m*[m Setting system clock using the hardware clock [UTC][K ...
+ [ ok ]
+ [1m[32m*[m Loading custom binary format handlers[K ...
+ [ ok ]
+ [1m[32m*[m Checking local filesystems [K ...
+fsck.ext4: No such file or directory while trying to open /dev/root
+Possibly non-existent device?
+ [1m[33m*[m Operational error[K
+ [ !! ]
+ [1m[32m*[m Remounting root filesystem read/write[K ...
+ [ ok ]
+ [1m[32m*[m Remounting filesystems[K ...
+ [ ok ]
+ [1m[32m*[m Updating /etc/mtab[K ...
+ [1m[32m*[m Creating mtab symbolic link[K
+ [ ok ]
+ [1m[32m*[m Activating swap devices[K ...
+ [ ok ]
+ [1m[32m*[m Mounting local filesystems[K ...
+mount: mounting overlay on /usr/local failed: No such file or directory
+ [1m[31m*[m Some local filesystem failed to mount[K
+ [ !! ]
+ [1m[32m*[m Configuring kernel parameters[K ...
+ [ ok ]
+ [1m[32m*[m Creating user login records[K ...
+ [ ok ]
+ [1m[32m*[m Setting hostname to cuda-distro from /etc/hostname[K ...
+ [ ok ]
+ [1m[32m*[m Bringing up network interface lo[K ...
+ [ ok ]
+ [1m[32m*[m Starting network[K
+udhcpc: started, v1.36.1
+udhcpc: broadcasting discover
+udhcpc: broadcasting select for 10.0.2.15, server 10.0.2.2
+udhcpc: lease of 10.0.2.15 obtained from 10.0.2.2, lease time 86400
+deleting routers
+adding dns 10.0.2.3
+ [ ok ]
+ [1m[32m*[m Setting terminal encoding [UTF-8][K ...
+ [ ok ]
+ [1m[32m*[m Saving terminal encoding[K ...
+ [ ok ]
+ [1m[32m*[m Seeding random number generator[K ...
+ [1m[32m*[m Saving 256 bits of non-creditable seed for next boot[K
+ [ ok ]
+ [1m[32m*[m Adding static routes[K ...
+ [ ok ]
+Starting default runlevel
+ [1m[32m*[m Starting /etc/init.d/S01syslogd[K
+ [ ok ]
+ [1m[32m*[m Starting /etc/init.d/S02klogd[K
+ [ ok ]
+ [1m[32m*[m Starting /etc/init.d/S05overlay-dirs[K
+ [ ok ]
+ [1m[32m*[m Starting /etc/init.d/S50sshd[K
+ [ ok ]
+ [1m[32m*[m Starting /etc/init.d/S99cuda-benchmark[K
+ [1m[33m*[m nvidia module not found — attempting to load...[K
+modprobe: FATAL: Module nvidia not found in directory /lib/modules/6.6.18
+ [1m[31m*[m Failed to load nvidia.ko[K
+ [1m[31m*[m ERROR: S99cuda-benchmark failed to start[K
+ [ !! ]
+ [1m[31m*[m ERROR: sysv-rcs failed to start[K
+
+Welcome to CUDA Linux Distribution
+cuda-distro login: 
