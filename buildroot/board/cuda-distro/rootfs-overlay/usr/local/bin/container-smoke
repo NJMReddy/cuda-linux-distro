@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Run an actual isolated OCI container using the installed runc.
+Readonly host userspace binds avoid copying proprietary binaries to another image.
+--gpu explicitly passes host NVIDIA character devices to a trusted workload.
+This is manual OCI device configuration, not NVIDIA Container Toolkit.
+"""
+import argparse, json, os, pathlib, stat, subprocess, tempfile
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--gpu',action='store_true')
+args=parser.parse_args()
+base=pathlib.Path(tempfile.mkdtemp(prefix='oci-smoke-',dir='/var/lib'))
+(base/'rootfs').mkdir()
+subprocess.run(['runc','spec'],cwd=base,check=True)
+config=json.loads((base/'config.json').read_text())
+config['process'].update(terminal=False,args=['/bin/sh','-c','echo OCI_CONTAINER_EXECUTED; id'],noNewPrivileges=True,user={'uid':65534,'gid':65534})
+config['process']['capabilities']={k:[] for k in ['bounding','effective','inheritable','permitted','ambient']}
+config['root']['readonly']=True
+for p in ['/bin','/sbin','/lib','/lib64','/usr/lib','/usr/bin','/usr/local']:
+    if pathlib.Path(p).exists():
+        config['mounts'].append({'destination':p,'type':'bind','source':p,'options':['rbind','ro','nosuid']})
+if args.gpu:
+    if not pathlib.Path('/dev/nvidia0').is_char_device() or not pathlib.Path('/dev/nvidiactl').is_char_device():
+        raise SystemExit('BLOCKED: NVIDIA device nodes missing; run verify-gpu-stack first')
+    config['process']['args']=['/usr/local/bin/cuda-benchmark','--all']
+    config['process']['user']={'uid':0,'gid':0}
+    config['process']['env'].append('CUDA_CACHE_DISABLE=1')
+    config['linux'].setdefault('devices',[])
+    config['linux'].setdefault('resources',{}).setdefault('devices',[])
+    candidates=list(pathlib.Path('/dev').glob('nvidia*'))+list(pathlib.Path('/dev/nvidia-caps').glob('*'))
+    for device in candidates:
+        info=device.stat()
+        if not stat.S_ISCHR(info.st_mode): continue
+        node={'path':str(device),'type':'c','major':os.major(info.st_rdev),'minor':os.minor(info.st_rdev),'fileMode':0o600,'uid':0,'gid':0}
+        config['linux']['devices'].append(node)
+        config['linux']['resources']['devices'].append({'allow':True,'type':'c','major':node['major'],'minor':node['minor'],'access':'rwm'})
+(base/'config.json').write_text(json.dumps(config,indent=2))
+subprocess.run(['runc','--root','/run/runc','run','cuda-cpu-smoke'],cwd=base,check=True)
+print('PASS: actual '+('GPU' if args.gpu else 'CPU')+' OCI execution completed with exit 0')
+if not args.gpu: print('GPU container execution NOT TESTED; use --gpu on supported hardware')
+print('Bundle retained for inspection:',base)

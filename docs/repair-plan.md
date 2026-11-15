@@ -1,0 +1,3 @@
+# Repair Plan
+
+Implemented source priorities: include external recipes without built-in NVIDIA collision; restore host ELF dependencies; correct pinned NVIDIA component archives/hashes; fail closed on library installs; rootless EFI/GPT image assembly; OpenRC ordered overlays/read-only root; explicit benchmark failures; minimal OCI runtime selection; remove fabricated evaluation tables. Remaining priorities: Linux clean build, inspect ELF/module closure, firmware QEMU boot and actual security enforcement, real GPU/cuDNN and OCI execution, NVIDIA GPU containers/toolkit gap, comparable measurements, legal-info and video. See changes.md and final-audit-report.md.

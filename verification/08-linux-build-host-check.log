@@ -1,0 +1,5 @@
+Command: "C:\Program Files\Git\bin\bash.exe" C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\scripts\build.sh --check-host
+Exit code: 3221225794
+Scope status: BLOCKED
+
+      0 [main] bash (20868) C:\Program Files\Git\bin\..\usr\bin\bash.exe: *** fatal error - NtCreateDirectoryObject(\BaseNamedObjects\msys-2.0S5-1888ae32e00d56aa): 0xC0000022

@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""CUDA Driver API vector addition, with embedded PTX and no ML framework.
+
+Exit 0 = verified computation; 77 = unavailable driver/device; 1 = failure.
+PTX is JIT compiled by the actual NVIDIA driver, never simulated on the CPU.
+"""
+import argparse
+import ctypes as C
+import json
+import math
+import pathlib
+import sys
+
+PTX = b'''
+.version 6.0
+.target sm_52
+.address_size 64
+.visible .entry add_vectors(.param .u64 A, .param .u64 B, .param .u64 O, .param .u32 N) {
+ .reg .pred %p;
+ .reg .b32 %r<6>;
+ .reg .b64 %d<8>;
+ .reg .f32 %f<4>;
+ ld.param.u64 %d1, [A];
+ ld.param.u64 %d2, [B];
+ ld.param.u64 %d3, [O];
+ ld.param.u32 %r1, [N];
+ mov.u32 %r2, %ctaid.x;
+ mov.u32 %r3, %ntid.x;
+ mov.u32 %r4, %tid.x;
+ mad.lo.s32 %r5, %r2, %r3, %r4;
+ setp.ge.u32 %p, %r5, %r1;
+ @%p bra DONE;
+ mul.wide.u32 %d4, %r5, 4;
+ add.u64 %d5, %d1, %d4;
+ add.u64 %d6, %d2, %d4;
+ add.u64 %d7, %d3, %d4;
+ ld.global.f32 %f1, [%d5];
+ ld.global.f32 %f2, [%d6];
+ add.f32 %f3, %f1, %f2;
+ st.global.f32 [%d7], %f3;
+DONE:
+ ret;
+}
+'''
+
+class Unavailable(RuntimeError):
+    pass
+
+class Driver:
+    def __init__(self):
+        try:
+            self.lib = C.CDLL('libcuda.so.1')
+        except OSError as e:
+            raise Unavailable(str(e)) from e
+
+    def call(self, name, types, *args):
+        fn = getattr(self.lib, name)
+        fn.argtypes = types
+        fn.restype = C.c_int
+        code = fn(*args)
+        if code:
+            if code == 100:  # CUDA_ERROR_NO_DEVICE
+                raise Unavailable('CUDA_ERROR_NO_DEVICE')
+            raise RuntimeError(f'{name} failed: CUDA driver error {code}')
+
+def run(n, iterations):
+    d = Driver()
+    P = C.c_void_p
+    I = C.c_int
+    U = C.c_uint
+    Q = C.c_uint64  # CUdeviceptr on this x86_64 target
+    S = C.c_size_t
+    byref = C.byref
+    d.call('cuInit', [U], 0)
+    count = I()
+    d.call('cuDeviceGetCount', [C.POINTER(I)], byref(count))
+    if not count.value:
+        raise Unavailable('no CUDA device')
+    device = I()
+    d.call('cuDeviceGet', [C.POINTER(I), I], byref(device), 0)
+    name = C.create_string_buffer(256)
+    d.call('cuDeviceGetName', [P, I, I], name, len(name), device)
+    driver_version = I()
+    d.call('cuDriverGetVersion', [C.POINTER(I)], byref(driver_version))
+    context = P()
+    d.call('cuCtxCreate_v2', [C.POINTER(P), U, I], byref(context), 0, device)
+    allocations, events = [], []
+    module = P()
+    try:
+        d.call('cuModuleLoadData', [C.POINTER(P), P], byref(module), C.c_char_p(PTX))
+        kernel = P()
+        d.call('cuModuleGetFunction', [C.POINTER(P), P, C.c_char_p], byref(kernel), module, b'add_vectors')
+        a = (C.c_float*n)(*(float(i % 127) for i in range(n)))
+        b = (C.c_float*n)(*(float(i % 251) for i in range(n)))
+        output = (C.c_float*n)()
+        for _ in range(3):
+            ptr = Q()
+            d.call('cuMemAlloc_v2', [C.POINTER(Q), S], byref(ptr), n*4)
+            allocations.append(ptr)
+        for ptr, host in zip(allocations[:2], [a, b]):
+            d.call('cuMemcpyHtoD_v2', [Q, P, S], ptr, host, n*4)
+        length = U(n)
+        params = (P*4)(*(C.cast(byref(x), P) for x in [*allocations, length]))
+        def launch():
+            d.call('cuLaunchKernel', [P, U, U, U, U, U, U, U, P, C.POINTER(P), P],
+                   kernel, (n+255)//256, 1, 1, 256, 1, 1, 0, None, params, None)
+        for _ in range(10):
+            launch()
+        d.call('cuCtxSynchronize', [])
+        for _ in range(2):
+            event = P()
+            d.call('cuEventCreate', [C.POINTER(P), U], byref(event), 0)
+            events.append(event)
+        d.call('cuEventRecord', [P, P], events[0], None)
+        for _ in range(iterations):
+            launch()
+        d.call('cuEventRecord', [P, P], events[1], None)
+        d.call('cuEventSynchronize', [P], events[1])
+        elapsed = C.c_float()
+        d.call('cuEventElapsedTime', [C.POINTER(C.c_float), P, P], byref(elapsed), *events)
+        d.call('cuMemcpyDtoH_v2', [P, Q, S], output, allocations[2], n*4)
+        for i, actual in enumerate(output):
+            expected = float(i % 127 + i % 251)
+            if actual != expected or not math.isfinite(actual):
+                raise RuntimeError(f'numerical mismatch at {i}: {actual} != {expected}')
+        if elapsed.value <= 0:
+            raise RuntimeError('nonpositive CUDA event duration')
+        return {'status':'PASS', 'device':name.value.decode(errors='replace'),
+                'driver_cuda_api_version':driver_version.value,
+                'algorithm':'float32 vector addition (embedded PTX, CUDA Driver API)',
+                'elements':n, 'iterations':iterations, 'warmup_iterations':10,
+                'correct_elements':n, 'kernel_total_ms':elapsed.value,
+                'kernel_mean_ms':elapsed.value/iterations,
+                'effective_memory_gbps':n*12*iterations/(elapsed.value*1e6),
+                'timing_scope':'CUDA events around launches; excludes allocation, JIT and host copies',
+                'cudnn_execution':'NOT TESTED', 'toolkit':'no nvcc; deployment runtime only'}
+    finally:
+        # Context destruction frees its allocations, events and module even if a
+        # partial setup failed. A cleanup error must not become a success result.
+        d.call('cuCtxDestroy_v2', [P], context)
+
+def main(argv=None):
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--all', action='store_true', help='run the supported vector-add test')
+    p.add_argument('--size', type=int, default=262144)
+    p.add_argument('--iterations', type=int, default=100)
+    p.add_argument('--output-json')
+    args=p.parse_args(argv)
+    if not 1<=args.size<=16777216 or not 1<=args.iterations<=100000:
+        p.error('size must be 1..16777216 and iterations 1..100000')
+    try:
+        result=run(args.size,args.iterations)
+        code=0
+    except Unavailable as e:
+        result={'status':'BLOCKED','reason':str(e),'gpu_computation_performed':False}
+        code=77
+    except Exception as e:
+        result={'status':'FAIL','reason':str(e)}
+        code=1
+    text=json.dumps(result,indent=2)
+    print(text)
+    if args.output_json:
+        dest=pathlib.Path(args.output_json)
+        dest.parent.mkdir(parents=True,exist_ok=True)
+        dest.write_text(text+'\n')
+    return code
+
+if __name__=='__main__':
+    sys.exit(main())

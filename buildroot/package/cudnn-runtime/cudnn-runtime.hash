@@ -1,0 +1,2 @@
+# NVIDIA official release manifest; see docs/references.md
+sha256  d6e2dca7dd3a22668738b66056227b2cb6801c5fa3cc7b0c1a10f6ea81228399  cudnn-linux-x86_64-9.2.1.18_cuda12-archive.tar.xz

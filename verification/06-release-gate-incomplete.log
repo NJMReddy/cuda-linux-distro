@@ -1,0 +1,78 @@
+Command: "C:\Program Files\Python314\python.exe" -X utf8 C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\scripts\verify-project.py --release
+Exit code: 1
+Scope status: PASS
+
+PASS: external make recipes included 
+PASS: distinct NVIDIA package selected 
+PASS: BR2_LINUX_KERNEL_NEEDS_HOST_LIBELF 
+PASS: BR2_TARGET_GENERIC_ROOT_PASSWD 
+PASS: BR2_TARGET_GENERIC_REMOUNT_ROOTFS_RW 
+PASS: BR2_PACKAGE_RUNC 
+PASS: BR2_LINUX_KERNEL_CUSTOM_VERSION_VALUE 
+PASS: cublas-runtime hash exists 
+PASS: cublas-runtime recipe uses correct namespace 
+PASS: cublas-runtime installs without suppressed errors 
+PASS: cuda-nvidia-driver hash exists 
+PASS: cuda-nvidia-driver recipe uses correct namespace 
+PASS: cuda-nvidia-driver installs without suppressed errors 
+PASS: cuda-runtime hash exists 
+PASS: cuda-runtime recipe uses correct namespace 
+PASS: cuda-runtime installs without suppressed errors 
+PASS: cudnn-runtime hash exists 
+PASS: cudnn-runtime recipe uses correct namespace 
+PASS: cudnn-runtime installs without suppressed errors 
+PASS: nvrtc-runtime hash exists 
+PASS: nvrtc-runtime recipe uses correct namespace 
+PASS: nvrtc-runtime installs without suppressed errors 
+PASS: package Kconfig names unique 
+PASS: CONFIG_MODULES=y 
+PASS: CONFIG_EFI_PARTITION=y 
+PASS: CONFIG_EXT4_FS=y 
+PASS: CONFIG_VIRTIO_BLK=y 
+PASS: CONFIG_SERIAL_8250_CONSOLE=y 
+PASS: CONFIG_OVERLAY_FS=y 
+PASS: CONFIG_CGROUPS=y 
+PASS: CONFIG_NAMESPACES=y 
+PASS: CONFIG_SECCOMP_FILTER=y 
+PASS: CONFIG_RANDOMIZE_BASE=y 
+PASS: module autoload not disabled 
+PASS: nouveau disabled 
+PASS: read-only root has noauto/pass=0 
+PASS: no systemd overlay ordering 
+PASS: overlay service orders after localmount 
+PASS: benchmark no undeclared framework 
+PASS: Python syntax scripts\check-config.py 
+PASS: Python syntax scripts\compare-metrics.py 
+PASS: Python syntax scripts\qemu-smoke.py 
+PASS: Python syntax scripts\test-regressions.py 
+PASS: Python syntax scripts\validate-image.py 
+PASS: Python syntax scripts\verify-project.py 
+PASS: Python syntax buildroot\board\cuda-distro\rootfs-overlay\usr\local\bin\cuda-benchmark 
+PASS: notebook document structure 
+PASS: Python overlay syntax container-smoke 
+PASS: Python overlay syntax cuda-benchmark 
+BLOCKED: bash -n shell syntax No usable Bash runtime
+PASS: tree-sitter shell parse scripts\build.sh 
+PASS: tree-sitter shell parse scripts\compare-distros.sh 
+PASS: tree-sitter shell parse scripts\measure-boot-time.sh 
+PASS: tree-sitter shell parse scripts\package-rootfs-docker.sh 
+PASS: tree-sitter shell parse scripts\run-qemu.sh 
+PASS: tree-sitter shell parse scripts\verify-project.sh 
+PASS: tree-sitter shell parse buildroot\board\cuda-distro\post-build.sh 
+PASS: tree-sitter shell parse buildroot\board\cuda-distro\post-image.sh 
+PASS: tree-sitter shell parse security\hardening.sh 
+PASS: tree-sitter shell parse buildroot\board\cuda-distro\rootfs-overlay\etc\init.d\cuda-writable 
+PASS: tree-sitter shell parse buildroot\board\cuda-distro\rootfs-overlay\etc\init.d\S99cuda-benchmark 
+PASS: tree-sitter shell parse buildroot\board\cuda-distro\rootfs-overlay\usr\local\bin\verify-gpu-stack 
+PASS: tree-sitter shell parse buildroot\board\cuda-distro\rootfs-overlay\usr\local\bin\verify-runtime 
+PASS: report has no invented score 
+BLOCKED: target installation No built target supplied
+BLOCKED: image structure No built image supplied
+NOT TESTED: QEMU complete runtime Requires independently captured runtime/build evidence
+NOT TESTED: real NVIDIA driver load Requires independently captured runtime/build evidence
+NOT TESTED: CUDA numerical GPU execution Requires independently captured runtime/build evidence
+NOT TESTED: cuDNN execution Requires independently captured runtime/build evidence
+NOT TESTED: OCI container execution Requires independently captured runtime/build evidence
+NOT TESTED: stock comparison Requires independently captured runtime/build evidence
+NOT TESTED: reproducibility rebuild Requires independently captured runtime/build evidence
+Submission readiness: NOT READY

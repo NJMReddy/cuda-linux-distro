@@ -1,0 +1,9 @@
+Command: "C:\Program Files\Python314\python.exe" -X utf8 C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\buildroot\board\cuda-distro\rootfs-overlay\usr\local\bin\cuda-benchmark --all --output-json C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\verification\no-driver-result.json
+Exit code: 77
+Scope status: BLOCKED
+
+{
+  "status": "BLOCKED",
+  "reason": "Could not find module 'libcuda.so.1' (or one of its dependencies). Try using the full path with constructor syntax.",
+  "gpu_computation_performed": false
+}

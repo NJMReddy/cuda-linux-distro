@@ -1,0 +1,17 @@
+config BR2_PACKAGE_CUDA_RUNTIME
+	bool "cuda-runtime"
+	depends on BR2_TOOLCHAIN_USES_GLIBC
+	depends on BR2_x86_64
+	depends on BR2_PACKAGE_CUDA_NVIDIA_DRIVER
+	help
+	  Installs the CUDA 12.4 runtime shared libraries (libcudart) on the
+	  target.  This is the minimal runtime needed to execute pre-compiled
+	  CUDA applications.  The CUDA compiler (nvcc) and SDK headers are
+	  NOT included; this package is for deployment targets only.
+
+	  Depends on the nvidia-driver package to provide libcuda.so.
+
+	  https://developer.nvidia.com/cuda-toolkit
+
+comment "cuda-runtime needs nvidia-driver and an x86_64 target"
+	depends on !BR2_x86_64 || !BR2_PACKAGE_CUDA_NVIDIA_DRIVER

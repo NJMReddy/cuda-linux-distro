@@ -1,0 +1,5 @@
+{
+  "status": "BLOCKED",
+  "reason": "Could not find module 'libcuda.so.1' (or one of its dependencies). Try using the full path with constructor syntax.",
+  "gpu_computation_performed": false
+}

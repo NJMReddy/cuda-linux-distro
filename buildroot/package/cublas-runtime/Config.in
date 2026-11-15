@@ -1,0 +1,4 @@
+config BR2_PACKAGE_CUBLAS_RUNTIME
+	bool "cublas-runtime"
+	depends on BR2_x86_64
+	depends on BR2_TOOLCHAIN_USES_GLIBC

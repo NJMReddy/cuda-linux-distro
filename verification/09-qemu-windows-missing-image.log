@@ -1,0 +1,14 @@
+Command: powershell.exe -NoProfile -File C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\scripts\run-qemu.ps1 -ImagePath C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\no-such-image.img
+Exit code: 1
+Scope status: PASS
+
+C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\scripts\run-qemu
+.ps1 : Missing disk image: C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-d
+istro-main\no-such-image.img
+At C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\scripts\run-q
+emu.ps1:9 char:49
++ ... h $ImagePath)) { Write-Error "Missing disk image: $ImagePath"; exit 1 ...
++                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,run-qemu.ps1
+ 

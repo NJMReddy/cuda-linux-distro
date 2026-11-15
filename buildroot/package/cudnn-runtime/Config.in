@@ -1,0 +1,23 @@
+config BR2_PACKAGE_CUDNN_RUNTIME
+	bool "cudnn-runtime"
+	depends on BR2_TOOLCHAIN_USES_GLIBC
+	depends on BR2_x86_64
+	depends on BR2_PACKAGE_CUDA_RUNTIME
+	select BR2_PACKAGE_CUBLAS_RUNTIME
+	select BR2_PACKAGE_NVRTC_RUNTIME
+	help
+	  Installs the NVIDIA cuDNN 9.x runtime shared libraries on the
+	  target.  cuDNN is a GPU-accelerated library of primitives for
+	  deep neural networks (convolutions, pooling, normalization,
+	  activation layers, etc.).
+
+	  Only the runtime .so files are installed — no development headers
+	  or static libraries.  Applications that were compiled against
+	  cuDNN headers on the host will find the matching runtime here.
+
+	  Requires cuda-runtime (libcudart) and nvidia-driver (libcuda).
+
+	  https://developer.nvidia.com/cudnn
+
+comment "cudnn-runtime needs cuda-runtime and an x86_64 target"
+	depends on !BR2_x86_64 || !BR2_PACKAGE_CUDA_RUNTIME

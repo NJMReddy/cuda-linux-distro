@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+grep -Eq ' / [^ ]+ [^ ]*\bro\b' /proc/mounts || { echo 'FAIL root is writable'; exit 1; }
+for path in /var /usr/local; do
+    grep -q "overlay $path overlay " /proc/mounts || { echo "FAIL overlay $path"; exit 1; }
+done
+test "$(sysctl -n kernel.randomize_va_space)" = 2
+test "$(sysctl -n kernel.kptr_restrict)" = 2
+test "$(sysctl -n kernel.dmesg_restrict)" = 1
+grep -Eq '^root:(!|\$6\$)[^:]*:' /etc/shadow
+test ! -x /usr/sbin/sshd
+touch /var/log/readonly-test
+rm /var/log/readonly-test
+echo 'PASS read-only root, writable overlays, secured root, no sshd, sysctls'
+echo 'AppArmor enforcement NOT TESTED (profile retained as historical draft)'
+free -k
+cat /proc/uptime

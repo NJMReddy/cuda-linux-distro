@@ -1,0 +1,52 @@
+{
+  "artifacts": {
+    "buildroot-2024.02.tar.xz": {
+      "status": "PASS",
+      "sha256": "3e6364c062551e35e72e935dae42b969aa594e407898f2f769a7aaaadf0316af"
+    },
+    "cudart.tar.xz": {
+      "status": "PASS",
+      "sha256": "0483bff9a36e7a44465db3cd42874f6f70f019297dcf803fbefcbf58d7448c8f"
+    }
+  },
+  "cudart_license_sha256": "e2c71babfd18a8e69542dd7e9ca018f9caa438094001a58e6bc4d8c999bf0d07",
+  "cudart_members": [
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/lib/stubs",
+      ""
+    ],
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/lib/stubs/libcuda.so",
+      ""
+    ],
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/lib/libcudart.so.12.4.127",
+      ""
+    ],
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/lib/libcudart.so.12",
+      "libcudart.so.12.4.127"
+    ],
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/lib/libcudart.so",
+      "libcudart.so.12"
+    ],
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/lib/libcudart_static.a",
+      ""
+    ],
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/lib/libcudadevrt.a",
+      ""
+    ],
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/lib/libculibos.a",
+      ""
+    ],
+    [
+      "cuda_cudart-linux-x86_64-12.4.127-archive/LICENSE",
+      ""
+    ]
+  ],
+  "note": "Only Buildroot and cudart archives were locally downloaded/examined. Other hashes come from official manifests; no GPU libraries were executed."
+}

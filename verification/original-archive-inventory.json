@@ -1,0 +1,278 @@
+[
+  {
+    "path": "boot-baseline.txt",
+    "bytes": 310,
+    "sha256": "c5726dc572e840241174842e4c98253ec508f1788c7ef992cfac11cde010b4a7",
+    "text_lines": 5
+  },
+  {
+    "path": "boot-logs/serial-20261115-085311.log",
+    "bytes": 294,
+    "sha256": "c0fa828799365ef4a57eb1fe0c3537e1b2794f3dc68e6959632f558d3f075579",
+    "text_lines": 8
+  },
+  {
+    "path": "boot-logs/serial-20261115-085543.log",
+    "bytes": 294,
+    "sha256": "c0fa828799365ef4a57eb1fe0c3537e1b2794f3dc68e6959632f558d3f075579",
+    "text_lines": 8
+  },
+  {
+    "path": "boot-logs/serial-20261115-090003.log",
+    "bytes": 3716,
+    "sha256": "f144b5822f9168e9ec2a26aa39be06e214d0115e338d423f9fc25629329f73e9",
+    "text_lines": 106
+  },
+  {
+    "path": "build.log",
+    "bytes": 50684030,
+    "sha256": "a5e4e5c4908e446314cda7c4d9e0d459ac2241124e13e03718dd33c0cace2353",
+    "text_lines": 131867
+  },
+  {
+    "path": "buildroot/board/cuda-distro/post-build.sh",
+    "bytes": 5747,
+    "sha256": "01c2b1b3a099f274820990eb7a00e9f2ce6260e895cd891f12fff6e89a80cd30",
+    "text_lines": 126
+  },
+  {
+    "path": "buildroot/board/cuda-distro/post-image.sh",
+    "bytes": 4646,
+    "sha256": "9cda7a3432614347fbe7bf35cc4da3a0c2624d7b4bde0c21ef80220c16a2794e",
+    "text_lines": 125
+  },
+  {
+    "path": "buildroot/board/cuda-distro/rootfs-overlay/etc/init.d/S99cuda-benchmark",
+    "bytes": 2166,
+    "sha256": "15b8e53e9eac5d7bde033f0029ef66c0844a1d47c43f545940df57bbba2a6765",
+    "text_lines": 72
+  },
+  {
+    "path": "buildroot/board/cuda-distro/rootfs-overlay/usr/local/bin/cuda-benchmark",
+    "bytes": 10463,
+    "sha256": "8adc8e9b0b79d466cdd322af8c82a5deba72f63bca9c0547266d66e0b136c9cb",
+    "text_lines": 266
+  },
+  {
+    "path": "buildroot/board/cuda-distro/rootfs-overlay/usr/local/bin/__pycache__/cuda-benchmarkcpython-313.pyc",
+    "bytes": 13369,
+    "sha256": "d630774f9091277338dc0f9601ddda2b89f652e7b5ee021977ca2bc79b99e5c8",
+    "text_lines": null
+  },
+  {
+    "path": "buildroot/Config.in",
+    "bytes": 346,
+    "sha256": "b490328177d14bc36f07a2a3feb6420d0b5817aefb1644d4f00ea306095a7194",
+    "text_lines": 7
+  },
+  {
+    "path": "buildroot/configs/cuda_distro_defconfig",
+    "bytes": 3237,
+    "sha256": "31f25b94c1d3e279a7d6d162ccd6cdc1cb9b9a599b0c50c93888af2abf13efd2",
+    "text_lines": 150
+  },
+  {
+    "path": "buildroot/external.desc",
+    "bytes": 55,
+    "sha256": "52c1aa9722314fcb3daaf5534928c351e2a56ea0d0e39605d4bdc3b9bb09257a",
+    "text_lines": 2
+  },
+  {
+    "path": "buildroot/external.mk",
+    "bytes": 61,
+    "sha256": "2901c7d75f0a5f2609c9f9043cc34947d5d9962c91c3868922522656de686024",
+    "text_lines": 1
+  },
+  {
+    "path": "buildroot/package/cuda-runtime/Config.in",
+    "bytes": 620,
+    "sha256": "19899d03e8854c86912df2f3ef1af0f033ff6570e851dc3d32bd61072c241a76",
+    "text_lines": 16
+  },
+  {
+    "path": "buildroot/package/cuda-runtime/cuda-runtime.mk",
+    "bytes": 3718,
+    "sha256": "cd2b6f3d698ec3db27eb46ae758540576ef0c95203aa535ff2f4d32304b58b70",
+    "text_lines": 89
+  },
+  {
+    "path": "buildroot/package/cudnn-runtime/Config.in",
+    "bytes": 770,
+    "sha256": "d449cfd0cb461c2614996e620723db291c6275e33fede3c71e5afd0dcde78b00",
+    "text_lines": 20
+  },
+  {
+    "path": "buildroot/package/cudnn-runtime/cudnn-runtime.mk",
+    "bytes": 4888,
+    "sha256": "c3f334f2e9b26452f9626295997c218c24c7d38e4306a457cd3a80132f5ac819",
+    "text_lines": 118
+  },
+  {
+    "path": "buildroot/package/nvidia-driver/Config.in",
+    "bytes": 551,
+    "sha256": "792c1e512f709ffb5e3900ff951d19573e75568864a08a8972c280f8e568fc75",
+    "text_lines": 17
+  },
+  {
+    "path": "buildroot/package/nvidia-driver/nvidia-driver.mk",
+    "bytes": 4960,
+    "sha256": "5eaf4e219e8c4bd5bad2d3145ce582f804c8ddbcde604cbd08903d12486dffa7",
+    "text_lines": 126
+  },
+  {
+    "path": "build_guide.py",
+    "bytes": 6906,
+    "sha256": "7dcc812645c78501ec341bc9b4e8c4fd51b1a41e184d37e33537aaccaf6eadbb",
+    "text_lines": 117
+  },
+  {
+    "path": "colab/cuda_benchmark.ipynb",
+    "bytes": 17109,
+    "sha256": "ca990bd03211e2d17c280f8a061f7b92a767f8e03a9c970a1f0973c62ed4bf54",
+    "text_lines": 495
+  },
+  {
+    "path": "docs/architecture.md",
+    "bytes": 8743,
+    "sha256": "6fe2319753af58417eb4ad79a28b217ea393f1d5a2db6d798ad6778f66b8115d",
+    "text_lines": 141
+  },
+  {
+    "path": "docs/build-verification.md",
+    "bytes": 2596,
+    "sha256": "82671ed77cd853dc25a1218e1490801d919a05572d1f3e2f9ffc5e13d2c202b4",
+    "text_lines": 60
+  },
+  {
+    "path": "docs/cuda-benchmark-verification.md",
+    "bytes": 2968,
+    "sha256": "deff8373835fa63152fb2c6365322729a6345d854ef21041eb7c0c400f87d044",
+    "text_lines": 58
+  },
+  {
+    "path": "docs/feature-regression-checklist.md",
+    "bytes": 7825,
+    "sha256": "21c9a1125ea3434eac3ee9c9c583c276d7c6380732db9148639718016e75bc73",
+    "text_lines": 35
+  },
+  {
+    "path": "docs/final-audit-report.md",
+    "bytes": 8425,
+    "sha256": "46e80487d836a230c7c63ad41b41fb75005596e0a41c9755d089f3a3e15a273a",
+    "text_lines": 83
+  },
+  {
+    "path": "docs/package-manifest.md",
+    "bytes": 8070,
+    "sha256": "3bff6284f3ec54cab0ca40075771aa774c19e7d1195bbcd1d07919d0b7bca76d",
+    "text_lines": 76
+  },
+  {
+    "path": "docs/qemu-boot-verification.md",
+    "bytes": 3794,
+    "sha256": "fedeec40870728e5fc80e8bf3189e7b2b5e6d5664d4475728b790b4c45bc086f",
+    "text_lines": 61
+  },
+  {
+    "path": "docs/repair-plan.md",
+    "bytes": 6627,
+    "sha256": "fad161b783865a3519ee930a2325c23ced6e07f89ffe75228b9f8fc620debcbb",
+    "text_lines": 88
+  },
+  {
+    "path": "docs/report.md",
+    "bytes": 22611,
+    "sha256": "9126380c6abffefcb1afb55a1b6ad87c40c0584154bbc7821682051c6a789192",
+    "text_lines": 478
+  },
+  {
+    "path": "docs/rubric-compliance.md",
+    "bytes": 3907,
+    "sha256": "8d7a6c4367f1d73c67c4d20c63f58290dbf4c1596cc12a383d69c3c3093ba0a2",
+    "text_lines": 26
+  },
+  {
+    "path": "generate_guide_docx.py",
+    "bytes": 10611,
+    "sha256": "da8e4cceccb23b87b89366d6ef8ff3cf8db6891b063c8c4763fce8805a625bac",
+    "text_lines": 307
+  },
+  {
+    "path": "HOW_TO_VERIFY_AND_TEST_GUIDE.docx",
+    "bytes": 5281,
+    "sha256": "35b480812683ca2f12bf80a8540d3bed62624fd634273eff2e5a3c3f77090b85",
+    "text_lines": null
+  },
+  {
+    "path": "kernel/kernel-size-report.md",
+    "bytes": 9685,
+    "sha256": "cb3dfee25f715d15cc6a932ad871e0eb81bb689e7ea950609a5681a26ea7def7",
+    "text_lines": 135
+  },
+  {
+    "path": "kernel/linux.config",
+    "bytes": 16186,
+    "sha256": "88fdd7fc166f760642e0303f07dbaf5d15ba1d0d5213ea43f5fb6397f1447d67",
+    "text_lines": 776
+  },
+  {
+    "path": "README.md",
+    "bytes": 8469,
+    "sha256": "0c6f66ed1b01b1dae37e0d0b4ad31568d7a219b7cc2a3fe058b3d24254e2fb0c",
+    "text_lines": 164
+  },
+  {
+    "path": "scripts/build.sh",
+    "bytes": 4742,
+    "sha256": "6b79588e546e0d818b8c9c74a7012557dafbeb95bcf2e3dc0fbaa74ee642cd20",
+    "text_lines": 133
+  },
+  {
+    "path": "scripts/compare-distros.sh",
+    "bytes": 7042,
+    "sha256": "b9506dab092061362773d056453eb8ba5b4c7ea10217d6e55836e93f070404d4",
+    "text_lines": 163
+  },
+  {
+    "path": "scripts/measure-boot-time.sh",
+    "bytes": 6720,
+    "sha256": "d07a44211f1771be123203d4ef13de7b344f08c74c697afe0b5838916be56699",
+    "text_lines": 197
+  },
+  {
+    "path": "scripts/package-rootfs-docker.sh",
+    "bytes": 4832,
+    "sha256": "72f84636e98fc27c69f406d7b6b3c66d010d7bb2d62ff9adb2639c30f72f2ecd",
+    "text_lines": 139
+  },
+  {
+    "path": "scripts/run-qemu.ps1",
+    "bytes": 2070,
+    "sha256": "2a5c38b50b22cd8ae4736e0b7bb66c3e791fa3e3c44491ce8dbdea1de25ea9cc",
+    "text_lines": 48
+  },
+  {
+    "path": "scripts/run-qemu.sh",
+    "bytes": 4028,
+    "sha256": "6bfed805df76ed6b006c9c1514858a60ccdde0d34de54021f632f2868da977e0",
+    "text_lines": 121
+  },
+  {
+    "path": "scripts/verify-project.sh",
+    "bytes": 11135,
+    "sha256": "08a957dfaf2b0e01d68e820ef2ec245b058e5141a2246c95c2f4902480f42e0d",
+    "text_lines": 314
+  },
+  {
+    "path": "security/apparmor-cuda-benchmark",
+    "bytes": 4659,
+    "sha256": "3cb8508d83fd8ee848ed49170c8316b3f99ed6dac291753b38f6870c52acab9b",
+    "text_lines": 106
+  },
+  {
+    "path": "security/hardening.sh",
+    "bytes": 7944,
+    "sha256": "5ac1033573d774f97ec88c7340f2fa89bde397511be86291fec6f927fd58629a",
+    "text_lines": 231
+  }
+]

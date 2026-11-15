@@ -1,0 +1,372 @@
+[
+  {
+    "check": "external make recipes included",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "distinct NVIDIA package selected",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "BR2_LINUX_KERNEL_NEEDS_HOST_LIBELF",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "BR2_TARGET_GENERIC_ROOT_PASSWD",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "BR2_TARGET_GENERIC_REMOUNT_ROOTFS_RW",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "BR2_PACKAGE_RUNC",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "BR2_LINUX_KERNEL_CUSTOM_VERSION_VALUE",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cublas-runtime hash exists",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cublas-runtime recipe uses correct namespace",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cublas-runtime installs without suppressed errors",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cuda-nvidia-driver hash exists",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cuda-nvidia-driver recipe uses correct namespace",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cuda-nvidia-driver installs without suppressed errors",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cuda-runtime hash exists",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cuda-runtime recipe uses correct namespace",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cuda-runtime installs without suppressed errors",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cudnn-runtime hash exists",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cudnn-runtime recipe uses correct namespace",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "cudnn-runtime installs without suppressed errors",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "nvrtc-runtime hash exists",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "nvrtc-runtime recipe uses correct namespace",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "nvrtc-runtime installs without suppressed errors",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "package Kconfig names unique",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_MODULES=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_EFI_PARTITION=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_EXT4_FS=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_VIRTIO_BLK=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_SERIAL_8250_CONSOLE=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_OVERLAY_FS=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_CGROUPS=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_NAMESPACES=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_SECCOMP_FILTER=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "CONFIG_RANDOMIZE_BASE=y",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "module autoload not disabled",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "nouveau disabled",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "read-only root has noauto/pass=0",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "no systemd overlay ordering",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "overlay service orders after localmount",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "benchmark no undeclared framework",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python syntax scripts\\check-config.py",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python syntax scripts\\compare-metrics.py",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python syntax scripts\\qemu-smoke.py",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python syntax scripts\\test-regressions.py",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python syntax scripts\\validate-image.py",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python syntax scripts\\verify-project.py",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python syntax buildroot\\board\\cuda-distro\\rootfs-overlay\\usr\\local\\bin\\cuda-benchmark",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "notebook document structure",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python overlay syntax container-smoke",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "Python overlay syntax cuda-benchmark",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "bash -n shell syntax",
+    "status": "BLOCKED",
+    "detail": "No usable Bash runtime"
+  },
+  {
+    "check": "tree-sitter shell parse scripts\\build-cuda-demo.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse scripts\\build.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse scripts\\compare-distros.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse scripts\\measure-boot-time.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse scripts\\package-rootfs-docker.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse scripts\\run-qemu.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse scripts\\verify-project.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse buildroot\\board\\cuda-distro\\post-build.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse buildroot\\board\\cuda-distro\\post-image.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse security\\hardening.sh",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse buildroot\\board\\cuda-distro\\rootfs-overlay\\etc\\init.d\\cuda-writable",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse buildroot\\board\\cuda-distro\\rootfs-overlay\\etc\\init.d\\S99cuda-benchmark",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse buildroot\\board\\cuda-distro\\rootfs-overlay\\usr\\local\\bin\\verify-gpu-stack",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "tree-sitter shell parse buildroot\\board\\cuda-distro\\rootfs-overlay\\usr\\local\\bin\\verify-runtime",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "report has no invented score",
+    "status": "PASS",
+    "detail": ""
+  },
+  {
+    "check": "target installation",
+    "status": "BLOCKED",
+    "detail": "No built target supplied"
+  },
+  {
+    "check": "image structure",
+    "status": "BLOCKED",
+    "detail": "No built image supplied"
+  },
+  {
+    "check": "QEMU complete runtime",
+    "status": "NOT TESTED",
+    "detail": "Requires independently captured runtime/build evidence"
+  },
+  {
+    "check": "real NVIDIA driver load",
+    "status": "NOT TESTED",
+    "detail": "Requires independently captured runtime/build evidence"
+  },
+  {
+    "check": "CUDA numerical GPU execution",
+    "status": "NOT TESTED",
+    "detail": "Requires independently captured runtime/build evidence"
+  },
+  {
+    "check": "cuDNN execution",
+    "status": "NOT TESTED",
+    "detail": "Requires independently captured runtime/build evidence"
+  },
+  {
+    "check": "OCI container execution",
+    "status": "NOT TESTED",
+    "detail": "Requires independently captured runtime/build evidence"
+  },
+  {
+    "check": "stock comparison",
+    "status": "NOT TESTED",
+    "detail": "Requires independently captured runtime/build evidence"
+  },
+  {
+    "check": "reproducibility rebuild",
+    "status": "NOT TESTED",
+    "detail": "Requires independently captured runtime/build evidence"
+  }
+]

@@ -1,0 +1,106 @@
+# DRAFT, NOT INSTALLED OR VERIFIED: AppArmor profile — cuda-benchmark service
+# Location: /etc/apparmor.d/usr.bin.cuda-benchmark
+#
+# Minimal permissions for the CUDA benchmark process:
+#   - Read CUDA libraries and devices
+#   - Write only to /tmp/cuda-benchmark-* and /var/log/cuda-benchmark/
+#   - No raw network, no home directories, no sensitive files
+
+#include <tunables/global>
+
+/usr/local/bin/cuda-benchmark  {
+  #include <abstractions/base>
+  #include <abstractions/python>
+
+  # -------------------------------------------------------------------------
+  # Binary execution and self-mapping (covers both /usr/local/bin and symlink)
+  # -------------------------------------------------------------------------
+  /usr/local/bin/cuda-benchmark             mr,
+  /usr/bin/cuda-benchmark                   mr,
+  /usr/bin/python3*                         ix,
+
+  # -------------------------------------------------------------------------
+  # CUDA runtime libraries (read + map)
+  # -------------------------------------------------------------------------
+  /usr/local/cuda/lib64/                    r,
+  /usr/local/cuda/lib64/**                  mr,
+  /usr/local/cuda/bin/                      r,
+  /usr/local/cuda/bin/*                     ix,
+  /usr/local/cuda/version.txt               r,
+  /usr/local/cuda-*/**                      r,
+
+  # cuDNN and system CUDA libraries
+  /usr/lib/libcudnn*.so*                    mr,
+  /usr/lib/libcuda.so*                      mr,
+  /usr/lib/libnvcuvid.so*                   mr,
+  /usr/lib/libnvidia*.so*                   mr,
+  /usr/lib/x86_64-linux-gnu/libcudnn*.so*   mr,
+  /usr/lib/x86_64-linux-gnu/libcuda.so*     mr,
+
+  # Standard shared libraries
+  /lib/libc.so*                             mr,
+  /lib/libm.so*                             mr,
+  /lib/libpthread.so*                       mr,
+  /lib/libdl.so*                            mr,
+  /lib/librt.so*                            mr,
+  /usr/lib/libstdc++.so*                    mr,
+  /usr/lib/libgcc_s.so*                     mr,
+  /lib64/ld-linux-x86-64.so*                mr,
+
+  # -------------------------------------------------------------------------
+  # GPU device nodes
+  # -------------------------------------------------------------------------
+  /dev/nvidia[0-9]*                         rw,
+  /dev/nvidiactl                            rw,
+  /dev/nvidia-uvm                           rw,
+  /dev/nvidia-uvm-tools                     rw,
+  /dev/nvidia-modeset                       rw,
+
+  # -------------------------------------------------------------------------
+  # /proc and /sys system inspection
+  # -------------------------------------------------------------------------
+  /proc/@{pid}/maps                         r,
+  /proc/@{pid}/status                       r,
+  /proc/@{pid}/stat                         r,
+  /proc/@{pid}/cmdline                      r,
+  /proc/sys/kernel/osrelease                r,
+  /proc/driver/nvidia/**                    r,
+  /proc/meminfo                             r,
+  /proc/cpuinfo                             r,
+  /sys/bus/pci/devices/                     r,
+  /sys/bus/pci/devices/**                   r,
+  /sys/class/drm/                           r,
+  /sys/class/drm/**                         r,
+  /sys/kernel/mm/hugepages/                 r,
+  /sys/kernel/mm/transparent_hugepage/**    r,
+
+  # -------------------------------------------------------------------------
+  # Scratch space & Output logs
+  # -------------------------------------------------------------------------
+  /tmp/                                     r,
+  /tmp/cuda-benchmark-*/                    rw,
+  /tmp/cuda-benchmark-**                    rw,
+  /var/log/cuda-benchmark/                  rw,
+  /var/log/cuda-benchmark/**                rw,
+  /var/log/cuda-benchmark.log               rw,
+
+  # -------------------------------------------------------------------------
+  # Signals
+  # -------------------------------------------------------------------------
+  signal (send, receive) set=(usr1, usr2, term, int) peer=/usr/local/bin/cuda-benchmark,
+
+  # -------------------------------------------------------------------------
+  # Explicit denials
+  # -------------------------------------------------------------------------
+  deny /etc/shadow                          r,
+  deny /etc/gshadow                         r,
+  deny /etc/passwd                          rw,
+  deny /root/**                             rw,
+  deny /home/**                             rw,
+  deny /boot/**                             r,
+  deny /sys/firmware/**                     rw,
+
+  # Restrict raw network access
+  deny network inet,
+  deny network inet6,
+}

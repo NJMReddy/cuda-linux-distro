@@ -1,0 +1,19 @@
+config BR2_PACKAGE_CUDA_NVIDIA_DRIVER
+	bool "cuda-nvidia-driver (headless compute)"
+	depends on BR2_TOOLCHAIN_USES_GLIBC
+	depends on BR2_x86_64
+	depends on BR2_LINUX_KERNEL
+	depends on !BR2_PACKAGE_NVIDIA_DRIVER
+	help
+	  Installs the NVIDIA proprietary graphics/compute driver
+	  (version 550.127.05) including the kernel modules (nvidia,
+	  nvidia-modeset, nvidia-uvm, nvidia-drm) and userspace libraries
+	  (libcuda, PTX JIT libraries, libnvidia-ml, nvidia-smi).
+
+	  This package is required for CUDA compute workloads.
+
+	  https://www.nvidia.com/drivers
+
+comment "nvidia-driver needs a Linux kernel to be built"
+	depends on BR2_x86_64
+	depends on !BR2_LINUX_KERNEL

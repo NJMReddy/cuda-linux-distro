@@ -1,0 +1,18 @@
+#!/sbin/openrc-run
+description="Volatile writable paths over an immutable root"
+depend() {
+    need localmount
+    before bootmisc sysctl sysv-rcs cuda-benchmark
+}
+start() {
+    ebegin "Preparing volatile writable state"
+    # /run is mounted by OpenRC/localmount before this service.
+    mkdir -p /run/overlay/var/upper /run/overlay/var/work \
+        /run/overlay/usr-local/upper /run/overlay/usr-local/work || return 1
+    mount -t overlay overlay -o lowerdir=/var,upperdir=/run/overlay/var/upper,workdir=/run/overlay/var/work /var || return 1
+    mount -t overlay overlay -o lowerdir=/usr/local,upperdir=/run/overlay/usr-local/upper,workdir=/run/overlay/usr-local/work /usr/local || return 1
+    mkdir -p /var/log/cuda-benchmark /var/cache /var/lib /run/lock || return 1
+    touch /run/resolv.conf || return 1
+    sysctl -p /etc/sysctl.d/99-cuda-hardening.conf || return 1
+    eend 0
+}

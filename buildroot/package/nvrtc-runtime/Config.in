@@ -1,0 +1,4 @@
+config BR2_PACKAGE_NVRTC_RUNTIME
+	bool "nvrtc-runtime"
+	depends on BR2_x86_64
+	depends on BR2_TOOLCHAIN_USES_GLIBC

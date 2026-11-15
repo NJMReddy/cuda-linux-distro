@@ -1,0 +1,22 @@
+Command: "C:\Program Files\Python314\python.exe" -X utf8 C:\Users\gurav\Documents\Codex\2026-11-15\files-mentioned-by-the-user-cuda\work\cuda-linux-distro-main\scripts\test-regressions.py
+Exit code: 0
+Scope status: PASS
+
+{
+  "status": "FAIL",
+  "reason": "cuLaunchKernel failed"
+}
+{
+  "status": "BLOCKED",
+  "reason": "driver unavailable",
+  "gpu_computation_performed": false
+}
+...usage: test-regressions.py [-h] [--all] [--size SIZE]
+                           [--iterations ITERATIONS]
+                           [--output-json OUTPUT_JSON]
+test-regressions.py: error: size must be 1..16777216 and iterations 1..100000
+....
+----------------------------------------------------------------------
+Ran 7 tests in 0.274s
+
+OK

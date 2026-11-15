@@ -1,0 +1,9 @@
+# Buildroot external tree Config.in for Custom CUDA Linux Distribution
+
+menu "NVIDIA/CUDA Custom Distribution Packages"
+	source "$BR2_EXTERNAL_CUDA_DISTRO_PATH/package/cuda-nvidia-driver/Config.in"
+	source "$BR2_EXTERNAL_CUDA_DISTRO_PATH/package/cuda-runtime/Config.in"
+	source "$BR2_EXTERNAL_CUDA_DISTRO_PATH/package/cudnn-runtime/Config.in"
+	source "$BR2_EXTERNAL_CUDA_DISTRO_PATH/package/cublas-runtime/Config.in"
+	source "$BR2_EXTERNAL_CUDA_DISTRO_PATH/package/nvrtc-runtime/Config.in"
+endmenu

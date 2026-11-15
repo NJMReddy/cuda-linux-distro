@@ -1,0 +1,6 @@
+Command: wsl.exe --list --quiet
+Exit code: 4294967295
+Scope status: BLOCKED
+
+Access is denied. 
+Error code: Wsl/E_ACCESSDENIED

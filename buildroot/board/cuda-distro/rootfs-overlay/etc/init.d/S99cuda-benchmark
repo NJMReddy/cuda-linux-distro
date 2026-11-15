@@ -1,0 +1,28 @@
+#!/sbin/openrc-run
+description="Synchronous CUDA correctness and throughput test"
+depend() {
+    need cuda-writable
+    after modules
+}
+start() {
+    mkdir -p /var/log/cuda-benchmark /var/cache/cuda || return 1
+    export CUDA_CACHE_PATH=/var/cache/cuda
+    if ! grep -q '^0x10de$' /sys/bus/pci/devices/*/vendor 2>/dev/null; then
+        ewarn "BLOCKED: no NVIDIA PCI device; no CUDA execution performed"
+        printf '%s\n' '{"status":"BLOCKED","reason":"no NVIDIA PCI device"}' > /var/log/cuda-benchmark/results.json
+        # OS startup is allowed without a GPU; the benchmark itself returns 77.
+        return 0
+    fi
+    modprobe nvidia || return 1
+    modprobe nvidia-uvm || return 1
+    # nvidia-modprobe creates device nodes from kernel-assigned major numbers.
+    nvidia-modprobe -c 0 || return 1
+    nvidia-modprobe -u -c 0 || return 1
+    nvidia-smi || return 1
+    ebegin "Running CUDA benchmark"
+    /usr/local/bin/cuda-benchmark --all --output-json /var/log/cuda-benchmark/results.json > /var/log/cuda-benchmark/benchmark.log 2>&1
+    result=$?
+    cat /var/log/cuda-benchmark/benchmark.log
+    eend "$result"
+    return "$result"
+}

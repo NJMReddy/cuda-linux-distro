@@ -1,0 +1,149 @@
+[
+  {
+    "label": "kconfig-python-resolution",
+    "command": [
+      "C:\\Program Files\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\resolve_config.py"
+    ],
+    "utc": "2026-11-15T14:11:23.080287+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "log": "01-kconfig-python-resolution.log"
+  },
+  {
+    "label": "requested-config-retained",
+    "command": [
+      "C:\\Program Files\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\scripts\\check-config.py",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\kconfig-check\\resolved.config"
+    ],
+    "utc": "2026-11-15T14:11:25.244562+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "log": "02-requested-config-retained.log"
+  },
+  {
+    "label": "static-regression",
+    "command": [
+      "C:\\Program Files\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\scripts\\verify-project.py",
+      "--json",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\verification\\static-results.json"
+    ],
+    "utc": "2026-11-15T14:11:25.355824+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "log": "03-static-regression.log"
+  },
+  {
+    "label": "failure-path-tests",
+    "command": [
+      "C:\\Program Files\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\scripts\\test-regressions.py"
+    ],
+    "utc": "2026-11-15T14:11:25.729635+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "log": "04-failure-path-tests.log"
+  },
+  {
+    "label": "benchmark-no-driver",
+    "command": [
+      "C:\\Program Files\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\buildroot\\board\\cuda-distro\\rootfs-overlay\\usr\\local\\bin\\cuda-benchmark",
+      "--all",
+      "--output-json",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\verification\\no-driver-result.json"
+    ],
+    "utc": "2026-11-15T14:11:26.382455+00:00",
+    "exit_code": 77,
+    "expected_exit_code": 77,
+    "status": "BLOCKED",
+    "log": "05-benchmark-no-driver.log"
+  },
+  {
+    "label": "release-gate-incomplete",
+    "command": [
+      "C:\\Program Files\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\scripts\\verify-project.py",
+      "--release"
+    ],
+    "utc": "2026-11-15T14:11:26.531366+00:00",
+    "exit_code": 1,
+    "expected_exit_code": 1,
+    "status": "PASS",
+    "log": "06-release-gate-incomplete.log"
+  },
+  {
+    "label": "wsl-environment",
+    "command": [
+      "wsl.exe",
+      "--list",
+      "--quiet"
+    ],
+    "utc": "2026-11-15T14:11:26.716196+00:00",
+    "exit_code": 4294967295,
+    "expected_exit_code": 0,
+    "status": "BLOCKED",
+    "log": "07-wsl-environment.log"
+  },
+  {
+    "label": "linux-build-host-check",
+    "command": [
+      "C:\\Program Files\\Git\\bin\\bash.exe",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\scripts\\build.sh",
+      "--check-host"
+    ],
+    "utc": "2026-11-15T14:11:26.839611+00:00",
+    "exit_code": 3221225794,
+    "expected_exit_code": 0,
+    "status": "BLOCKED",
+    "log": "08-linux-build-host-check.log"
+  },
+  {
+    "label": "qemu-windows-missing-image",
+    "command": [
+      "powershell.exe",
+      "-NoProfile",
+      "-File",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\scripts\\run-qemu.ps1",
+      "-ImagePath",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\no-such-image.img"
+    ],
+    "utc": "2026-11-15T14:11:27.378681+00:00",
+    "exit_code": 1,
+    "expected_exit_code": 1,
+    "status": "PASS",
+    "log": "09-qemu-windows-missing-image.log"
+  },
+  {
+    "label": "corrected-word-guide",
+    "command": [
+      "C:\\Program Files\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\gurav\\Documents\\Codex\\2026-11-15\\files-mentioned-by-the-user-cuda\\work\\cuda-linux-distro-main\\build_guide.py"
+    ],
+    "utc": "2026-11-15T14:11:28.077376+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "log": "10-corrected-word-guide.log"
+  }
+]
